@@ -1,0 +1,66 @@
+/**
+ * Copyright (C) 2018 by George Vrynios
+ * This project was made under the supervision of Udacity
+ * in the Android Developer Nanodegree Program
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.aiassoft.popularmovies;
+
+import android.app.Application;
+import android.content.Context;
+
+/**
+ * Created by gvryn on 05/03/18.
+ * This application class is used to store static resources
+ * being used in static methods
+ */
+public class MyApp extends Application {
+    // static resources
+    private static MyApp mInstance;
+
+    public static final String APP_TAG = "Popular Movies: ";
+    public static String mMinutes;
+    public static String mMaxRating;
+
+    /**
+     * Initialize the static resources
+     */
+    public static void initResources() {
+        mMinutes = getContext().getResources().getString(R.string.minutes);
+        mMaxRating = getContext().getResources().getString(R.string.max_rating);
+    }
+
+    /**
+     * @return the application instance
+     */
+    public static MyApp getInstance() {
+        return mInstance;
+    }
+
+    /**
+     * @return the application context
+     */
+    public static Context getContext(){
+        return mInstance.getApplicationContext();
+    }
+
+    @Override
+    public void onCreate() {
+        mInstance = this;
+        MyApp.initResources();
+
+        super.onCreate();
+    }
+}

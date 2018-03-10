@@ -13,9 +13,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JSON utilities helper class
+ */
 public class JsonUtils {
     private static final String LOG_TAG = MyApp.APP_TAG + JsonUtils.class.getSimpleName();
 
+    /**
+     * This method will take a json string as input and use that
+     * json data to build a Movie object
+     * @param json The Movie data in json format as string
+     * @return     The Movie Object
+     */
     public static Movie parseMoviesJson(String json) {
         Log.d(LOG_TAG, json);
         Movie movie = new Movie();
@@ -44,10 +53,9 @@ public class JsonUtils {
 
     /**
      * This method will take a json string as input and use that
-     * json data to build a Sandwich object
-     * @param json The Sandwich data in json format as string
-     * @return The Sandwich object
-     * @throws JSONException
+     * json data to build a ArrayList of MoviesListItem objects
+     * @param json The Movies List data in json format as string
+     * @return     The ArrayList of MoviesListItem objects
      */
     public static List<MoviesListItem> parseMoviesListJson(String json) {
         Log.d(LOG_TAG, json);
@@ -63,7 +71,6 @@ public class JsonUtils {
             /** Get the movies' data array */
             JSONArray arrResults =  moviesData.getJSONArray("results");
 
-            //int maxResults = arrResults.length() > 5 ? 5 : arrResults.length();
             int maxResults = arrResults.length();
             for (int i=0; i<maxResults; i++) {
                 /** Get the movie's data */

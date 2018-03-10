@@ -41,12 +41,22 @@ import java.util.Scanner;
 public class NetworkUtils {
     private static final String LOG_TAG = MyApp.APP_TAG + NetworkUtils.class.getSimpleName();
 
+    /* Holds the selected Sort By type for the Movies List */
     public static theMovieDbSortBy moviesListSortBy = theMovieDbSortBy.MOST_POPULAR;
 
-    public static enum theMovieDbSortBy {
+    /**
+     * The Sort By Enums,
+     * with the method getUrl to get the right web url based on the selected Sort By type
+     */
+    public enum theMovieDbSortBy {
         MOST_POPULAR,
         HIGHEST_RATED;
 
+        /**
+         * Get the right web url based on the selected Sort By type
+         *
+         * @return The web url based on the selected Sort By type
+         */
         String getUrl() {
             switch (this) {
                 case MOST_POPULAR:
@@ -54,11 +64,17 @@ public class NetworkUtils {
                 case HIGHEST_RATED:
                     return Constant.THEMOVIEDB_BASE_URL + Constant.THEMOVIEDB_TOP_RATED_MOVIES;
                 default:
-                    throw new AssertionError("Unknown operations " + this);
+                    throw new AssertionError("Unknown Sort By " + this);
             }
         }
     }
 
+    /**
+     * Builds the Movie Poster URL
+     *
+     * @param posterPath The Poster Path, as given in themoviedb.org
+     * @return           The URL to download the Movie Poster
+     */
     public static String buildPosterUrl(String posterPath) {
         String url = Constant.THEMOVIEDB_POSTER_IMAGE_BASE_URL
                 + Constant.THEMOVIEDB_POSTER_IMAGE_THUMBNAIL_SIZE
@@ -67,6 +83,12 @@ public class NetworkUtils {
         return url;
     }
 
+    /**
+     * Builds the URL to download the Movie's data
+     *
+     * @param movieId The Movie Id, as given in themoviedb.org
+     * @return        The URL to get the Movie's data
+     */
     public static URL buildMovieUrl(int movieId) {
         Uri builtUri = Uri.parse(Constant.THEMOVIEDB_BASE_URL
                 + Constant.THEMOVIEDB_MOVIE
@@ -88,9 +110,9 @@ public class NetworkUtils {
     }
 
     /**
-     * Builds the URL used to query themoviedb.
+     * Builds the URL to download the Movies List
      *
-     * @return The URL to use to query the themoviedb server.
+     * @return The URL to get the Movies List from the themoviedb.org
      */
     public static URL buildMoviesListUrl() {
         Uri builtUri = Uri.parse(moviesListSortBy.getUrl()).buildUpon()

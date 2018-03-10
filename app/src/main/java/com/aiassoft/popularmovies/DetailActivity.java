@@ -40,14 +40,6 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.net.URL;
 
-
-// TODO: add comments
-// TODO: add an loading image
-// TODO: add a image not found, on picasso error
-// TODO: space all vars
-// TODO: add wait spinner
-// TODO: add error message for the async task
-
 /**
  * Created by gvryn on 04/03/18.
  * Displays the details of a movie
@@ -202,7 +194,6 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(MyApp.getContext(), "details onPostExecute", Toast.LENGTH_LONG).show();
             mLoadingIndicator.setVisibility(View.INVISIBLE);
 
             if (s != null && !s.equals("")) {
@@ -210,11 +201,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 /* onStop() invalidates mContext & mMovie */
                 if (mContext != null) {
-                    Toast.makeText(MyApp.getContext(), "details onPostExecute mContext is not null", Toast.LENGTH_LONG).show();
                     mMovie = JsonUtils.parseMoviesJson(s);
 
                     if (mMovie != null) {
-                        Toast.makeText(MyApp.getContext(), "details onPostExecute mMovie is not null", Toast.LENGTH_LONG).show();
                         populateUI();
                     }
                 }

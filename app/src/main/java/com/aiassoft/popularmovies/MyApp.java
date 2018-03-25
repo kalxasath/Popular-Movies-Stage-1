@@ -20,6 +20,8 @@ package com.aiassoft.popularmovies;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.view.View;
 
 /**
  * Created by gvryn on 05/03/18.
@@ -54,6 +56,14 @@ public class MyApp extends Application {
      */
     public static Context getContext(){
         return mInstance.getApplicationContext();
+    }
+
+    /**
+     * @return true if the app supports the right to left UI. otherwise returns false
+     */
+    public boolean isRTL() {
+        Configuration config = mInstance.getApplicationContext().getResources().getConfiguration();
+        return config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 
     @Override
